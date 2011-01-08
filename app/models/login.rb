@@ -10,6 +10,7 @@ class Login
     @password = params[:password]
     @imei = params[:imei]
     @mobile_number = params[:mobile_number]
+    @ip = params[:ip]
   end
 
   def authenticate_user
@@ -21,8 +22,10 @@ class Login
     if session and @imei
       user.add_mobile_login_event(@imei, @mobile_number)
       user.save
+    elsif session
+      user.add_web_login_event(@ip)
+      user.save
     end
-
 
     session
   end

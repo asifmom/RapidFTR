@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.xml
   def create
-    @login = Login.new(params)
+    @login = Login.new(params.merge({:ip => request.remote_ip}))
     @session = @login.authenticate_user
 
     if not @session

@@ -86,4 +86,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def logs
+    @user = User.get(params[:id])
+  end
+
 end

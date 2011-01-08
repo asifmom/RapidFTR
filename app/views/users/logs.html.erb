@@ -1,0 +1,17 @@
+<table>
+    <thead>
+       <tr>
+           <th>Time</th>
+           <th>IMEI/IP</th>
+           <th>Description</th>
+       </tr>
+    </thead>
+    <%@user.login_history.each do |login_history|%>
+        <tr id="user-row-<%=@user.full_name%>">
+            <td><%=h login_history["timestamp"] %></td>
+            <td><%=h login_history["imei"] || login_history["ip"] %></td>
+            <td>Logged in from <%=h login_client_description(login_history) %></td>
+        </tr>
+    <%end%>
+</table>
+

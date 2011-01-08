@@ -62,4 +62,13 @@ describe UsersController do
     end
   end
 
+  describe "View user logs" do
+    it "should select the user based on the id in the url" do
+      mock_user = mock(:user)
+      User.should_receive(:get).and_return(mock_user)
+      get :logs, :id => "id"
+      assigns[:user] = mock_user
+    end
+  end
+
 end

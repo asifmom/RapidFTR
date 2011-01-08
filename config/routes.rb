@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :users
+  map.user_logs "/logs/:id", :controller => "users", :action => "logs"
   map.admin 'admin', :controller=>"admin", :action=>"index"
   map.resources :sessions, :except => :index
 

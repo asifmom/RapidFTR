@@ -110,10 +110,27 @@ describe User do
     user.add_mobile_login_event(imei, mobile_number)
     user.save
 
-    event = user.mobile_login_history.first
+    event = user.login_history.first
     event[:imei].should == imei
     event[:mobile_number].should == mobile_number
     event[:timestamp] == now
   end
+
+  it "should be able to store a web login event" do
+    ip = "10.12.1.17"
+    user = build_user
+    user.create!
+
+    now = Time.now
+    Time.stub(:now).and_return(now)
+
+    user.add_web_login_event(ip)
+    user.save
+
+    event = user.login_history.first
+    event[:ip].should == ip
+    event[:timestamp] == now
+  end
+
 
 end

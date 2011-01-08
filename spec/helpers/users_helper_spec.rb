@@ -8,4 +8,13 @@ describe UsersHelper do
     included_modules.should include(UsersHelper)
   end
 
+  it "return web app if mobile number is blank" do
+    mock_login_history = {:mobile_number => nil}
+    helper.login_client_description(mock_login_history).should == "Web App"
+  end
+
+  it "return mobile_number if mobile number is not blank" do
+    mock_login_history = {:mobile_number => "mobile_number"}
+    helper.login_client_description(mock_login_history).should == "mobile_number"
+  end
 end
